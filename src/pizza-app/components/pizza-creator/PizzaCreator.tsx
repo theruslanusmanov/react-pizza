@@ -7,35 +7,35 @@ export default function PizzaCreator() {
     const i = 0;
 
     return (
-        <div class="pizza-creator">
+        <div className="pizza-creator">
             <h2>
                 Choose your pizzas
-                <button class="button" type="button">
-                    <i class="fa fa-plus"></i>
+                <button className="button" type="button">
+                    <i className="fa fa-plus"></i>
                     Add pizza
                 </button>
             </h2>
 
             <div>
-                <div class="pizza-creator__header">
+                <div className="pizza-creator__header">
 
-                    <i class="fa fa-fw pizza-creator__icon"></i>
+                    <i className="fa fa-fw pizza-creator__icon"></i>
                     Pizza {i + 1}
 
-                    <i class="fa fa-fw pizza-creator__status"></i>
+                    <i className="fa fa-fw pizza-creator__status"></i>
 
                     <div
-                        class="pizza-creator__delete">
-                        <i class="fa fa-trash fa-fw"></i>
+                        className="pizza-creator__delete">
+                        <i className="fa fa-trash fa-fw"></i>
                     </div>
 
                 </div>
 
                 <div
-                    class="pizza-creator__content"
+                    className="pizza-creator__content"
                 >
 
-                    <h3>Select the size <span class="required">*</span></h3>
+                    <h3>Select the size <span className="required">*</span></h3>
                     <PizzaSize></PizzaSize>
 
                     <h3>Pick your toppings</h3>
