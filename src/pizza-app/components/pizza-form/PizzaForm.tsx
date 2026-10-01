@@ -2,11 +2,47 @@ import { useForm } from 'react-hook-form';
 import "./PizzaForm.scss";
 import PizzaCreator from "../pizza-creator/PizzaCreator.tsx";
 import PizzaSummary from "../pizza-summary/PizzaSummary.tsx";
+import {usePizzaFormData} from '../../containers/pizza-app/PizzaFormContext.tsx';
+
+interface PizzaDetailsFormValues {
+    name: string;
+    email: string;
+    confirm: string;
+    phone: string;
+    address: string;
+    postcode: string;
+}
+
+interface PizzaPizzasFormValues {
+    size: string;
+    toppings: string[];
+}
+
+interface PizzaFormValues {
+    details: PizzaDetailsFormValues;
+    pizzas: PizzaPizzasFormValues[];
+}
 
 export default function PizzaForm() {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors } } = useForm<PizzaFormValues>({
+        defaultValues: {
+            details: {
+                name: '',
+                email: '',
+                confirm: '',
+                phone: '',
+                address: '',
+                postcode: '',
+            },
+            pizzas: {
+                size: '',
+                toppings: ['beacon'],
+            }
+        }
+    });
+    const { updateFormData } = usePizzaFormData();
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
