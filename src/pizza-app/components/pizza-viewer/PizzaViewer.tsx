@@ -2,7 +2,9 @@ import "./PizzaViewer.scss";
 import {useState} from "react";
 
 export default function PizzaViewer() {
-    const [activePizza, setActivePizza] = useState(0)
+    const [activePizza] = useState(0)
+
+    const topping = 'bacon'
 
     return (
         <>
@@ -15,11 +17,11 @@ export default function PizzaViewer() {
                     <div className="pizza__base"></div>
                     <div className="pizza__toppings">
                         <div>
-                            <div className="pizza__topping pizza__topping--{{ topping }}"></div>
-                            <div className="pizza__topping pizza__topping--{{ topping }}"></div>
-                            <div className="pizza__topping pizza__topping--{{ topping }}"></div>
-                            <div className="pizza__topping pizza__topping--{{ topping }}"></div>
-                            <div className="pizza__topping pizza__topping--{{ topping }}"></div>
+                            <div className={`pizza__topping pizza__topping--${ topping }`}></div>
+                            <div className={`pizza__topping pizza__topping--${ topping }`}></div>
+                            <div className={`pizza__topping pizza__topping--${ topping }`}></div>
+                            <div className={`pizza__topping pizza__topping--${ topping }`}></div>
+                            <div className={`pizza__topping pizza__topping--${ topping }`}></div>
                         </div>
                     </div>
                 </div>
