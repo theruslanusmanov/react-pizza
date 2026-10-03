@@ -31,6 +31,7 @@ export default function PizzaSummary() {
 
             {pizzas.map((pizza: PizzaPizzasFormValues) => (
                 <div
+                    key={pizza.size}
                     className="pizza-summary__pizza">
 
                     <div>
@@ -41,7 +42,7 @@ export default function PizzaSummary() {
 
                         <div className="pizza-summary__toppings">
                             {pizza.toppings.map((topping: string) => (
-                                <div className="pizza-summary__topping">
+                                <div className="pizza-summary__topping" key={topping}>
                                     <i className="fa fa-plus"></i>
                                     {topping}
                                     <span className="pizza-summary__price">{prices[pizza.size].toppings}</span>

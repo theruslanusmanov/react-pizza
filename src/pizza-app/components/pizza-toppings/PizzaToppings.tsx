@@ -17,7 +17,7 @@ export default function PizzaToppings() {
                         <input
                             type="checkbox"
                         />
-                        <span className="pizza-topping__icon pizza-topping__icon--{{ topping }}"></span>
+                        <span className={`pizza-topping__icon pizza-topping__icon--${ topping }`}></span>
                         { topping }
                     </label>
                 ))
