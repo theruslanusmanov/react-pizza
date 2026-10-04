@@ -22,7 +22,7 @@ export default function PizzaSummary() {
 
     useEffect(() => {
         console.log(pizzas);
-    })
+    }, [pizzas]);
 
     return (
         <div className="pizza-summary">

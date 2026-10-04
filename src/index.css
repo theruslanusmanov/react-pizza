@@ -1,3 +1,16 @@
+/* src/index.css */
+@font-face {
+  font-family: 'Font Awesome';
+  src: url('./assets/fonts/FontAwesome.otf') format('opentype'),
+  url('./assets/fonts/fontawesome-webfont.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Font Awesome', sans-serif;
+}
+
 body {
   margin: 0 auto;
   min-height: 100%;

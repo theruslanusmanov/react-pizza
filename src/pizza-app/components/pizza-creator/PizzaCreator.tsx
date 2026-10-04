@@ -4,12 +4,12 @@ import PizzaSize from "../pizza-size/PizzaSize.tsx";
 import PizzaToppings from "../pizza-toppings/PizzaToppings.tsx";
 
 export default function PizzaCreator({addPizza, removePizza, togglePizza}: {
-    addPizza: () => object,
-    removePizza: () => object,
-    togglePizza: () => object
+    addPizza: () => void,
+    removePizza: (index: number) => void,
+    togglePizza: (index: number) => void
 }) {
-    const visiblePizzas = 1;
     const i = 0;
+    const openPizza = 0;
 
     return (
         <div className="pizza-creator">
@@ -22,15 +22,16 @@ export default function PizzaCreator({addPizza, removePizza, togglePizza}: {
             </h2>
 
             <div>
-                <div className="pizza-creator__header" onClick={togglePizza}>
+                <div className="pizza-creator__header" onClick={() => togglePizza(i)}>
 
-                    <i className="fa fa-fw pizza-creator__icon"></i>
+                    <i className={openPizza === i ? 'fa fa-fw pizza-creator__icon fa-chevron-up' : 'fa fa-fw pizza-creator__icon fa-chevron-down'}></i>
+
                     Pizza {i + 1}
 
                     <i className="fa fa-fw pizza-creator__status"></i>
 
                     <div
-                        className="pizza-creator__delete" onClick={removePizza}>
+                        className="pizza-creator__delete" onClick={() => removePizza(i)}>
                         <i className="fa fa-trash fa-fw"></i>
                     </div>
 
