@@ -13,12 +13,24 @@ export default function PizzaCreator({addPizza, removePizza, togglePizza}: {
 }) {
     const openPizza = 0;
 
-    const {watch} = useFormContext();
+    const {watch, setValue} = useFormContext();
     const pizzas: PizzaPizzasFormValues[] = watch("pizzas");
 
     useEffect(() => {
         console.log(pizzas);
     }, [pizzas]);
+
+    function onChange(value: string[]) {
+        console.log(value);
+        setValue('pizzas.0.toppings', value, {
+            shouldValidate: true,
+            shouldDirty: true,
+            shouldTouch: true,
+        })
+        console.log(pizzas);
+        // TODO: FIX
+        setValue('pizzas', pizzas);
+    }
 
     return (
         <div className="pizza-creator">
@@ -55,7 +67,7 @@ export default function PizzaCreator({addPizza, removePizza, togglePizza}: {
                         <PizzaSize></PizzaSize>
 
                         <h3>Pick your toppings</h3>
-                        <PizzaToppings></PizzaToppings>
+                        <PizzaToppings values={pizza.toppings} onChange={(value: string[]) => onChange(value)}></PizzaToppings>
 
                     </div>
 

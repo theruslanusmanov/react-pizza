@@ -1,14 +1,14 @@
 import "./PizzaToppings.scss";
 import {useState} from "react";
 
-export default function PizzaToppings() {
+export default function PizzaToppings({values, onChange}: {values: string[], onChange: (value: string[]) => void}) {
     const toppings = [
         'anchovy', 'bacon', 'basil', 'chili', 'mozzarella', 'mushroom',
         'olive', 'onion', 'pepper', 'pepperoni', 'sweetcorn', 'tomato'
     ];
 
     const [focused, setFocused] = useState<string>('');
-    const [value, setValue] = useState<string[]>([]);
+    const [value, setValue] = useState<string[]>([...values]);
 
     function updateTopping(topping: string) {
         if (value.includes(topping)) {
@@ -16,6 +16,7 @@ export default function PizzaToppings() {
         } else {
             setValue(value.concat([topping]));
         }
+        onChange([...value]);
     }
 
     return (

@@ -1,7 +1,7 @@
 import "./PizzaApp.scss";
 import PizzaViewer from "../../components/pizza-viewer/PizzaViewer.tsx";
-import PizzaForm, {type PizzaFormValues, type PizzaPizzasFormValues} from "../../components/pizza-form/PizzaForm.tsx";
-import {FormProvider, useForm, useFormContext} from "react-hook-form";
+import PizzaForm, {type PizzaFormValues} from "../../components/pizza-form/PizzaForm.tsx";
+import {FormProvider, useForm} from "react-hook-form";
 import {useEffect, useState} from "react";
 
 // eslint-disable-next-line react-refresh/only-export-components
@@ -36,8 +36,12 @@ export default function PizzaApp() {
 
     const pizzas = formMethods.watch("pizzas");
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [activePizza, setActivePizza] = useState(0)
+
+    useEffect(() => {
+        console.log(pizzas);
+        console.log(activePizza);
+    }, [pizzas]);
 
     function createPizza() {
         formMethods.setValue('details.name', 'RUSLAN', {shouldValidate: true})
