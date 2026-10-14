@@ -1,3 +1,5 @@
+@use "sass:color";
+
 .pizza-toppings {
   margin: 10px 0;
   display: flex;
@@ -68,7 +70,7 @@
   }
 
   &__icon {
-    background: darken(#F3F3F3, 5%) no-repeat center center;
+    background: color.adjust($color: #f3f3f3, $lightness: 5%) no-repeat center center;
     background-size: 30px;
     width: 40px;
     display: block;

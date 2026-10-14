@@ -1,8 +1,8 @@
 import "./PizzaApp.scss";
 import PizzaViewer from "../../components/pizza-viewer/PizzaViewer.tsx";
-import PizzaForm, {type PizzaFormValues} from "../../components/pizza-form/PizzaForm.tsx";
-import {FormProvider, useForm} from "react-hook-form";
-import {useState} from "react";
+import PizzaForm, {type PizzaFormValues, type PizzaPizzasFormValues} from "../../components/pizza-form/PizzaForm.tsx";
+import {FormProvider, useForm, useFormContext} from "react-hook-form";
+import {useEffect, useState} from "react";
 
 // eslint-disable-next-line react-refresh/only-export-components
 export const prices: {
@@ -27,14 +27,20 @@ export default function PizzaApp() {
             pizzas: [{
                 size: 'small',
                 toppings: ['bacon']
-            }]
+            },/* {
+                size: 'small',
+                toppings: ['bacon']
+            }*/]
         }
     });
 
+    const pizzas = formMethods.watch("pizzas");
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const [activePizza, setActivePizza] = useState(0)
-    const [total, setTotal] = useState('0')
 
     function createPizza() {
+        formMethods.setValue('details.name', 'RUSLAN', {shouldValidate: true})
         formMethods.setValue('pizzas', [
             {
                 size: 'small',
@@ -46,8 +52,6 @@ export default function PizzaApp() {
             }
         ], {
             shouldValidate: true, // Optional: Triggers validation rules immediately
-            shouldDirty: true,    // Optional: Marks the field as dirty
-            shouldTouch: true,    // Optional: Marks the field as touched
         })
     }
 

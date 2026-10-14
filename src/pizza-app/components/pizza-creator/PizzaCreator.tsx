@@ -2,14 +2,23 @@ import "./PizzaCreator.scss";
 
 import PizzaSize from "../pizza-size/PizzaSize.tsx";
 import PizzaToppings from "../pizza-toppings/PizzaToppings.tsx";
+import {useFormContext} from "react-hook-form";
+import type {PizzaPizzasFormValues} from "../pizza-form/PizzaForm.tsx";
+import {useEffect} from "react";
 
 export default function PizzaCreator({addPizza, removePizza, togglePizza}: {
     addPizza: () => void,
     removePizza: (index: number) => void,
     togglePizza: (index: number) => void
 }) {
-    const i = 0;
     const openPizza = 0;
+
+    const {watch} = useFormContext();
+    const pizzas: PizzaPizzasFormValues[] = watch("pizzas");
+
+    useEffect(() => {
+        console.log(pizzas);
+    }, [pizzas]);
 
     return (
         <div className="pizza-creator">
@@ -21,35 +30,38 @@ export default function PizzaCreator({addPizza, removePizza, togglePizza}: {
                 </button>
             </h2>
 
-            <div>
-                <div className="pizza-creator__header" onClick={() => togglePizza(i)}>
+            {pizzas.map((pizza: PizzaPizzasFormValues, i: number) => (
+                <div key={pizza.size}>
+                    <div className="pizza-creator__header" onClick={() => togglePizza(i)}>
 
-                    <i className={openPizza === i ? 'fa fa-fw pizza-creator__icon fa-chevron-up' : 'fa fa-fw pizza-creator__icon fa-chevron-down'}></i>
+                        <i className={openPizza === i ? 'fa fa-fw pizza-creator__icon fa-chevron-up' : 'fa fa-fw pizza-creator__icon fa-chevron-down'}></i>
 
-                    Pizza {i + 1}
+                        Pizza {i + 1}
 
-                    <i className="fa fa-fw pizza-creator__status"></i>
+                        <i className="fa fa-fw pizza-creator__status"></i>
+
+                        <div
+                            className="pizza-creator__delete" onClick={() => removePizza(i)}>
+                            <i className="fa fa-trash fa-fw"></i>
+                        </div>
+
+                    </div>
 
                     <div
-                        className="pizza-creator__delete" onClick={() => removePizza(i)}>
-                        <i className="fa fa-trash fa-fw"></i>
+                        className="pizza-creator__content--open"
+                    >
+
+                        <h3>Select the size <span className="required">*</span></h3>
+                        <PizzaSize></PizzaSize>
+
+                        <h3>Pick your toppings</h3>
+                        <PizzaToppings></PizzaToppings>
+
                     </div>
 
                 </div>
+            ))}
 
-                <div
-                    className="pizza-creator__content--open"
-                >
-
-                    <h3>Select the size <span className="required">*</span></h3>
-                    <PizzaSize></PizzaSize>
-
-                    <h3>Pick your toppings</h3>
-                    <PizzaToppings></PizzaToppings>
-
-                </div>
-
-            </div>
         </div>
     )
 }

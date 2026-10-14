@@ -29,9 +29,9 @@ export default function PizzaSummary() {
 
             <h2>Order Summary</h2>
 
-            {pizzas.map((pizza: PizzaPizzasFormValues) => (
+            {pizzas.map((pizza: PizzaPizzasFormValues, index: number) => (
                 <div
-                    key={pizza.size}
+                    key={index}
                     className="pizza-summary__pizza">
 
                     <div>

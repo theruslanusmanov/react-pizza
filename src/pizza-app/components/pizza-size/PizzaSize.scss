@@ -1,3 +1,5 @@
+@use "sass:color";
+
 .pizza-size {
   display: flex;
   width: 100%;
@@ -31,7 +33,7 @@
 
       .pizza-size__plate {
         background: #f3f3f3;
-        border: 3px solid darken(#f3f3f3, 10%);
+        border: 3px solid color.adjust($color: #f3f3f3, $lightness: 10%);
       }
 
       .pizza-size__pizza__line {
@@ -41,8 +43,8 @@
 
     &--focused {
       .pizza-size__plate {
-        background: darken(#f3f3f3, 10%);
-        border: 3px solid darken(#f3f3f3, 20%);
+        background: color.adjust($color: #f3f3f3, $lightness: 10%);
+        border: 3px solid color.adjust($color: #f3f3f3, $lightness: 20%);
       }
     }
   }

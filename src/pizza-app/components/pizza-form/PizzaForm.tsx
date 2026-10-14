@@ -2,6 +2,7 @@ import {useFormContext} from 'react-hook-form';
 import "./PizzaForm.scss";
 import PizzaCreator from "../pizza-creator/PizzaCreator.tsx";
 import PizzaSummary from "../pizza-summary/PizzaSummary.tsx";
+import {useEffect} from "react";
 
 export interface PizzaDetailsFormValues {
     name: string;
@@ -29,7 +30,11 @@ export default function PizzaForm({addPizza, removePizza, togglePizza}: {
 }) {
     const formMethods = useFormContext();
 
+    const pizzas: PizzaPizzasFormValues[] = formMethods.watch("pizzas");
 
+    useEffect(() => {
+        console.log(pizzas);
+    }, [pizzas]);
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
     const onSubmit = (data) => console.log(data);
